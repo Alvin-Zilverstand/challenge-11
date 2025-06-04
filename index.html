@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="nl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Website Template</title>
+    <title>Auto Tuning Pro</title>
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
     <!-- Bootstrap CSS -->
@@ -15,52 +15,46 @@
     <!-- Custom JS -->
     <script src="js/tailwind.config.js"></script>
 </head>
-<body class="bg-gradient-to-br from-gray-100 to-blue-50">
+<body class="bg-gradient-to-br from-gray-900 to-gray-800">
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top transition-all duration-300 hover:shadow-lg glass-nav">
         <div class="container">
             <a class="navbar-brand hover:scale-110 transition-transform duration-300 flex items-center" href="#">
                 <img src="assets/favicon.svg" alt="Logo" class="h-8 w-8 mr-2 animate-spin-slow">
-                <span class="bg-gradient-to-r from-purple-400 to-pink-400 text-transparent bg-clip-text font-bold">Your Brand</span>
+                <span class="bg-gradient-to-r from-red-500 to-orange-500 text-transparent bg-clip-text font-bold">TUNING PRO</span>
             </a>
-            <button class="navbar-toggler border-0 focus:ring-2 focus:ring-purple-500 transition-all duration-300" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <button class="navbar-toggler border-0 focus:ring-2 focus:ring-red-500 transition-all duration-300" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link active hover:text-pink-300 transition-all duration-300 relative group" href="#home">
+                        <a class="nav-link active hover:text-red-400 transition-all duration-300 relative group" href="#home">
                             Home
-                            <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-400 to-pink-400 transition-all duration-300 group-hover:w-full"></span>
+                            <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-red-500 to-orange-500 transition-all duration-300 group-hover:w-full"></span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link hover:text-pink-300 transition-all duration-300 relative group" href="#about">
-                            About
-                            <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-400 to-pink-400 transition-all duration-300 group-hover:w-full"></span>
+                        <a class="nav-link hover:text-red-400 transition-all duration-300 relative group" href="#services">
+                            Diensten
+                            <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-red-500 to-orange-500 transition-all duration-300 group-hover:w-full"></span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link hover:text-pink-300 transition-all duration-300 relative group" href="#services">
-                            Services
-                            <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-400 to-pink-400 transition-all duration-300 group-hover:w-full"></span>
+                        <a class="nav-link hover:text-red-400 transition-all duration-300 relative group" href="#gallery">
+                            Galerij
+                            <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-red-500 to-orange-500 transition-all duration-300 group-hover:w-full"></span>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link hover:text-pink-300 transition-all duration-300 relative group" href="#portfolio">
-                            Portfolio
-                            <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-400 to-pink-400 transition-all duration-300 group-hover:w-full"></span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link hover:text-pink-300 transition-all duration-300 relative group" href="#contact">
+                        <a class="nav-link hover:text-red-400 transition-all duration-300 relative group" href="#contact">
                             Contact
-                            <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-purple-400 to-pink-400 transition-all duration-300 group-hover:w-full"></span>
+                            <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-red-500 to-orange-500 transition-all duration-300 group-hover:w-full"></span>
                         </a>
                     </li>
                     <li class="nav-item ms-3">
-                        <button class="btn btn-sm btn-primary bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl">
-                            Get Started
+                        <button class="btn btn-sm btn-primary bg-gradient-to-r from-red-600 to-orange-600 hover:from-red-700 hover:to-orange-700 hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl">
+                            Afspraak Maken
                         </button>
                     </li>
                 </ul>
@@ -70,90 +64,100 @@
 
     <!-- Hero Section -->
     <section id="home" class="py-5 min-h-screen flex items-center relative overflow-hidden">
-        <div class="absolute inset-0 bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 opacity-20"></div>
+        <div class="absolute inset-0 bg-gradient-to-br from-red-900 via-gray-900 to-orange-900 opacity-20"></div>
         <div class="container relative z-10">
             <div class="row">
                 <div class="col-md-8 mx-auto text-center">
-                    <h1 class="text-5xl font-bold mb-4 animate-float bg-gradient-to-r from-purple-600 to-pink-600 text-transparent bg-clip-text">Welcome to Your Website</h1>
-                    <p class="text-gray-700 mb-8 text-xl animate-pulse-slow">A clean, modern template for your next project</p>
+                    <h1 class="text-6xl font-bold mb-4 animate-float bg-gradient-to-r from-red-500 to-orange-500 text-transparent bg-clip-text">ONTKETEN JE AUTO</h1>
+                    <p class="text-gray-300 mb-8 text-xl animate-pulse-slow">Professionele ECU Tuning & Prestatieverbetering</p>
                     <div class="space-x-4">
-                        <button class="btn btn-primary bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 hover:scale-110 transition-transform duration-300 shadow-lg hover:shadow-xl">Get Started</button>
-                        <button class="btn btn-outline-secondary hover:bg-gradient-to-r hover:from-purple-600 hover:to-pink-600 hover:text-white transition-all duration-300">Learn More</button>
+                        <button class="btn btn-primary bg-gradient-to-r from-red-600 to-orange-600 hover:from-red-700 hover:to-orange-700 hover:scale-110 transition-transform duration-300 shadow-lg hover:shadow-xl">
+                            Start Nu
+                        </button>
+                        <button class="btn btn-outline-secondary hover:bg-gradient-to-r hover:from-red-600 hover:to-orange-600 hover:text-white transition-all duration-300">
+                            Bekijk Galerij
+                        </button>
                     </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="py-5 bg-gradient-to-br from-white to-blue-50 relative">
-        <div class="container">
-            <h2 class="text-4xl font-bold text-center mb-8 hover:scale-105 transition-transform duration-300 bg-gradient-to-r from-purple-600 to-pink-600 text-transparent bg-clip-text">About Us</h2>
-            <div class="row">
-                <div class="col-md-6 transform hover:scale-105 transition-all duration-300">
-                    <p class="text-gray-700 text-lg">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                </div>
-                <div class="col-md-6 transform hover:scale-105 transition-all duration-300">
-                    <p class="text-gray-700 text-lg">Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Services Section -->
-    <section id="services" class="py-5 relative bg-gradient-to-br from-blue-50 to-purple-50">
+    <section id="services" class="py-5 relative bg-gradient-to-br from-gray-900 to-gray-800">
         <div class="container">
-            <h2 class="text-4xl font-bold text-center mb-8 hover:scale-105 transition-transform duration-300 bg-gradient-to-r from-purple-600 to-pink-600 text-transparent bg-clip-text">Our Services</h2>
+            <h2 class="text-4xl font-bold text-center mb-12 hover:scale-105 transition-transform duration-300 bg-gradient-to-r from-red-500 to-orange-500 text-transparent bg-clip-text">Onze Diensten</h2>
             <div class="row">
                 <div class="col-md-4 mb-4">
-                    <div class="bg-white rounded-lg shadow-md p-6 transform hover:scale-105 transition-all duration-300 hover:shadow-xl border-t-4 border-purple-500">
+                    <div class="bg-gray-800 rounded-lg shadow-md p-6 transform hover:scale-105 transition-all duration-300 hover:shadow-xl border-t-4 border-red-500">
                         <div class="text-4xl mb-4 animate-bounce-slow">🚀</div>
-                        <h3 class="text-xl font-bold mb-3 text-purple-600">Service 1</h3>
-                        <p class="text-gray-600">Description of your first service goes here.</p>
+                        <h3 class="text-xl font-bold mb-3 text-red-500">ECU Tuning</h3>
+                        <p class="text-gray-400">Ontgrendel het ware potentieel van je motor met onze professionele ECU-herprogrammering.</p>
+                        <ul class="mt-4 text-gray-400 space-y-2">
+                            <li>• Vermogen & Koppel Verhoging</li>
+                            <li>• Brandstofverbruik Optimalisatie</li>
+                            <li>• Gasrespons Verbetering</li>
+                        </ul>
                     </div>
                 </div>
                 <div class="col-md-4 mb-4">
-                    <div class="bg-white rounded-lg shadow-md p-6 transform hover:scale-105 transition-all duration-300 hover:shadow-xl border-t-4 border-pink-500">
-                        <div class="text-4xl mb-4 animate-bounce-slow">💡</div>
-                        <h3 class="text-xl font-bold mb-3 text-pink-600">Service 2</h3>
-                        <p class="text-gray-600">Description of your second service goes here.</p>
-                    </div>
-                </div>
-                <div class="col-md-4 mb-4">
-                    <div class="bg-white rounded-lg shadow-md p-6 transform hover:scale-105 transition-all duration-300 hover:shadow-xl border-t-4 border-indigo-500">
+                    <div class="bg-gray-800 rounded-lg shadow-md p-6 transform hover:scale-105 transition-all duration-300 hover:shadow-xl border-t-4 border-orange-500">
                         <div class="text-4xl mb-4 animate-bounce-slow">⚡</div>
-                        <h3 class="text-xl font-bold mb-3 text-indigo-600">Service 3</h3>
-                        <p class="text-gray-600">Description of your third service goes here.</p>
+                        <h3 class="text-xl font-bold mb-3 text-orange-500">Prestatie Onderdelen</h3>
+                        <p class="text-gray-400">Hoogwaardige tuning onderdelen om de prestaties van je voertuig te verbeteren.</p>
+                        <ul class="mt-4 text-gray-400 space-y-2">
+                            <li>• Uitlaatsystemen</li>
+                            <li>• Luchtfilters</li>
+                            <li>• Vering Upgrades</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="bg-gray-800 rounded-lg shadow-md p-6 transform hover:scale-105 transition-all duration-300 hover:shadow-xl border-t-4 border-red-500">
+                        <div class="text-4xl mb-4 animate-bounce-slow">🔧</div>
+                        <h3 class="text-xl font-bold mb-3 text-red-500">Maatwerk Oplossingen</h3>
+                        <p class="text-gray-400">Op maat gemaakte aanpassingen die aansluiten bij jouw specifieke wensen.</p>
+                        <ul class="mt-4 text-gray-400 space-y-2">
+                            <li>• Vermogensmeting</li>
+                            <li>• Custom Mapping</li>
+                            <li>• Prestatie Analyse</li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Portfolio Section -->
-    <section id="portfolio" class="py-5 bg-gradient-to-br from-purple-50 to-pink-50 relative">
+    <!-- Gallery Section -->
+    <section id="gallery" class="py-5 relative bg-gradient-to-br from-gray-800 to-gray-900">
         <div class="container">
-            <h2 class="text-4xl font-bold text-center mb-8 hover:scale-105 transition-transform duration-300 bg-gradient-to-r from-purple-600 to-pink-600 text-transparent bg-clip-text">Portfolio</h2>
+            <h2 class="text-4xl font-bold text-center mb-12 hover:scale-105 transition-transform duration-300 bg-gradient-to-r from-red-500 to-orange-500 text-transparent bg-clip-text">Ons Werk</h2>
             <div class="row">
                 <div class="col-md-4 mb-4">
-                    <div class="bg-white rounded-lg p-4 transform hover:scale-105 transition-all duration-300 hover:shadow-xl">
-                        <div class="aspect-w-16 aspect-h-9 bg-gradient-to-r from-purple-500 via-pink-500 to-red-500 rounded-lg mb-3 animate-pulse-slow"></div>
-                        <h3 class="text-xl font-bold mb-2 text-purple-600">Project 1</h3>
-                        <p class="text-gray-600">Brief description of your first project.</p>
+                    <div class="bg-gray-800 rounded-lg overflow-hidden transform hover:scale-105 transition-all duration-300 hover:shadow-xl">
+                        <div class="aspect-w-16 aspect-h-9 bg-gradient-to-r from-red-500 via-orange-500 to-red-500 rounded-lg mb-3 animate-pulse-slow"></div>
+                        <div class="p-4">
+                            <h3 class="text-xl font-bold mb-2 text-red-500">BMW M3 Stage 2</h3>
+                            <p class="text-gray-400">Complete prestatie upgrade met custom mapping</p>
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-4 mb-4">
-                    <div class="bg-white rounded-lg p-4 transform hover:scale-105 transition-all duration-300 hover:shadow-xl">
-                        <div class="aspect-w-16 aspect-h-9 bg-gradient-to-r from-blue-500 via-indigo-500 to-purple-500 rounded-lg mb-3 animate-pulse-slow"></div>
-                        <h3 class="text-xl font-bold mb-2 text-indigo-600">Project 2</h3>
-                        <p class="text-gray-600">Brief description of your second project.</p>
+                    <div class="bg-gray-800 rounded-lg overflow-hidden transform hover:scale-105 transition-all duration-300 hover:shadow-xl">
+                        <div class="aspect-w-16 aspect-h-9 bg-gradient-to-r from-orange-500 via-red-500 to-orange-500 rounded-lg mb-3 animate-pulse-slow"></div>
+                        <div class="p-4">
+                            <h3 class="text-xl font-bold mb-2 text-orange-500">Audi RS3 Tuning</h3>
+                            <p class="text-gray-400">ECU herprogrammering en uitlaatsysteem upgrade</p>
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-4 mb-4">
-                    <div class="bg-white rounded-lg p-4 transform hover:scale-105 transition-all duration-300 hover:shadow-xl">
-                        <div class="aspect-w-16 aspect-h-9 bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 rounded-lg mb-3 animate-pulse-slow"></div>
-                        <h3 class="text-xl font-bold mb-2 text-pink-600">Project 3</h3>
-                        <p class="text-gray-600">Brief description of your third project.</p>
+                    <div class="bg-gray-800 rounded-lg overflow-hidden transform hover:scale-105 transition-all duration-300 hover:shadow-xl">
+                        <div class="aspect-w-16 aspect-h-9 bg-gradient-to-r from-red-500 via-orange-500 to-red-500 rounded-lg mb-3 animate-pulse-slow"></div>
+                        <div class="p-4">
+                            <h3 class="text-xl font-bold mb-2 text-red-500">Mercedes AMG Pakket</h3>
+                            <p class="text-gray-400">Volledig prestatie verbeteringspakket</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -161,25 +165,29 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-5 relative bg-gradient-to-br from-blue-50 to-indigo-50">
+    <section id="contact" class="py-5 relative bg-gradient-to-br from-gray-900 to-gray-800">
         <div class="container">
-            <h2 class="text-4xl font-bold text-center mb-8 hover:scale-105 transition-transform duration-300 bg-gradient-to-r from-purple-600 to-pink-600 text-transparent bg-clip-text">Contact Us</h2>
+            <h2 class="text-4xl font-bold text-center mb-12 hover:scale-105 transition-transform duration-300 bg-gradient-to-r from-red-500 to-orange-500 text-transparent bg-clip-text">Neem Contact Op</h2>
             <div class="row">
                 <div class="col-md-6 mx-auto">
-                    <form class="bg-white rounded-lg shadow-md p-6 transform hover:scale-105 transition-all duration-300 hover:shadow-xl border-t-4 border-purple-500">
+                    <form class="bg-gray-800 rounded-lg shadow-md p-6 transform hover:scale-105 transition-all duration-300 hover:shadow-xl border-t-4 border-red-500">
                         <div class="mb-3">
-                            <label for="name" class="form-label text-purple-600">Name</label>
-                            <input type="text" class="form-control focus:ring-2 focus:ring-purple-500 transition-all duration-300" id="name" placeholder="Your name">
+                            <label for="name" class="form-label text-gray-300">Naam</label>
+                            <input type="text" class="form-control bg-gray-700 border-gray-600 text-white focus:ring-2 focus:ring-red-500 transition-all duration-300" id="name" placeholder="Uw naam">
                         </div>
                         <div class="mb-3">
-                            <label for="email" class="form-label text-purple-600">Email</label>
-                            <input type="email" class="form-control focus:ring-2 focus:ring-purple-500 transition-all duration-300" id="email" placeholder="Your email">
+                            <label for="email" class="form-label text-gray-300">E-mail</label>
+                            <input type="email" class="form-control bg-gray-700 border-gray-600 text-white focus:ring-2 focus:ring-red-500 transition-all duration-300" id="email" placeholder="Uw e-mailadres">
                         </div>
                         <div class="mb-3">
-                            <label for="message" class="form-label text-purple-600">Message</label>
-                            <textarea class="form-control focus:ring-2 focus:ring-purple-500 transition-all duration-300" id="message" rows="4" placeholder="Your message"></textarea>
+                            <label for="car" class="form-label text-gray-300">Voertuig</label>
+                            <input type="text" class="form-control bg-gray-700 border-gray-600 text-white focus:ring-2 focus:ring-red-500 transition-all duration-300" id="car" placeholder="Uw voertuigmodel">
                         </div>
-                        <button type="submit" class="btn btn-primary bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 hover:scale-110 transition-transform duration-300 shadow-lg hover:shadow-xl">Send Message</button>
+                        <div class="mb-3">
+                            <label for="message" class="form-label text-gray-300">Bericht</label>
+                            <textarea class="form-control bg-gray-700 border-gray-600 text-white focus:ring-2 focus:ring-red-500 transition-all duration-300" id="message" rows="4" placeholder="Wat zoekt u?"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary bg-gradient-to-r from-red-600 to-orange-600 hover:from-red-700 hover:to-orange-700 hover:scale-110 transition-transform duration-300 shadow-lg hover:shadow-xl">Verstuur Bericht</button>
                     </form>
                 </div>
             </div>
@@ -187,16 +195,33 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-gradient-to-r from-purple-600 to-indigo-600 text-white py-4 relative">
+    <footer class="bg-gradient-to-r from-gray-900 to-gray-800 text-white py-8 relative border-t border-gray-700">
         <div class="container">
             <div class="row">
-                <div class="col-md-6">
-                    <p class="hover:text-pink-300 transition-colors duration-300">&copy; 2024 Your Brand. All rights reserved.</p>
+                <div class="col-md-4">
+                    <h3 class="text-xl font-bold mb-4 bg-gradient-to-r from-red-500 to-orange-500 text-transparent bg-clip-text">TUNING PRO</h3>
+                    <p class="text-gray-400">Professionele auto tuning diensten voor prestatie liefhebbers.</p>
                 </div>
-                <div class="col-md-6 text-end">
-                    <a href="#" class="text-white me-3 hover:text-pink-300 transition-colors duration-300">Privacy Policy</a>
-                    <a href="#" class="text-white me-3 hover:text-pink-300 transition-colors duration-300">Terms of Service</a>
-                    <a href="#" class="text-white hover:text-pink-300 transition-colors duration-300">Contact</a>
+                <div class="col-md-4">
+                    <h4 class="text-lg font-semibold mb-4 text-gray-300">Snelle Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#services" class="text-gray-400 hover:text-red-400 transition-colors duration-300">Diensten</a></li>
+                        <li><a href="#gallery" class="text-gray-400 hover:text-red-400 transition-colors duration-300">Galerij</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-red-400 transition-colors duration-300">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h4 class="text-lg font-semibold mb-4 text-gray-300">Contactgegevens</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li>📍 Locatie, Stad</li>
+                        <li>📞 +31612345678</li>
+                        <li>✉️ info@tuningpro.nl</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row mt-8">
+                <div class="col-12 text-center">
+                    <p class="text-gray-500">&copy; 2024 Tuning Pro. Alle rechten voorbehouden.</p>
                 </div>
             </div>
         </div>
