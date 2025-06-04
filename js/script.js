@@ -15,12 +15,14 @@ document.addEventListener('DOMContentLoaded', () => {
     // Get Started button functionality
     const getStartedButtons = document.querySelectorAll('.btn-primary');
     getStartedButtons.forEach(button => {
-        button.addEventListener('click', () => {
+        button.addEventListener('click', (e) => {
+            // Prevent modal from opening if this is the form submit button
+            if (button.type === 'submit' || button.closest('form')) return;
             // Create and show modal
             const modal = document.createElement('div');
             modal.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 fade-in';
             modal.innerHTML = `
-                <div class="bg-gray-800 rounded-lg p-8 max-w-md w-full mx-4 transform hover:scale-105 transition-all duration-300 border border-red-500">
+                <div class="bg-gray-800 rounded-lg p-8 max-w-md w-full mx-4 transform hover:scale-105 transition-all duration-300 border border-red-500 relative">
                     <h3 class="text-2xl font-bold mb-4 bg-gradient-to-r from-red-500 to-orange-500 text-transparent bg-clip-text">Boek Je Tuning</h3>
                     <p class="text-gray-300 mb-6">Kies je gewenste dienst:</p>
                     <div class="space-y-4">
@@ -52,11 +54,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Add click events to modal buttons
             const modalButtons = modal.querySelectorAll('button:not(:last-child)');
-            modalButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    const action = button.textContent.trim();
+            modalButtons.forEach(modalBtn => {
+                modalBtn.addEventListener('click', () => {
+                    const action = modalBtn.textContent.trim();
                     // Scroll to contact form and populate service type
-                    const contactForm = document.querySelector('#contact form');
+                    const contactForm = document.querySelector('#contact form, #contactForm');
                     const messageField = contactForm.querySelector('#message');
                     messageField.value = `Ik ben geïnteresseerd in: ${action}`;
                     modal.remove();
@@ -67,7 +69,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Form submission handling
-    const contactForm = document.querySelector('form');
+    const contactForm = document.querySelector('#contactForm');
     if (contactForm) {
         const carSelect = contactForm.querySelector('#car');
         carSelect.addEventListener('change', (e) => {
@@ -77,6 +79,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 customInput.className = 'form-control bg-gray-700 border-gray-600 text-white focus:ring-2 focus:ring-red-500 transition-all duration-300 mt-2';
                 customInput.placeholder = 'Voer uw voertuigmodel in';
                 customInput.id = 'customCar';
+                customInput.name = 'customCar';
                 
                 const existingCustomInput = contactForm.querySelector('#customCar');
                 if (!existingCustomInput) {
@@ -90,17 +93,50 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        contactForm.addEventListener('submit', (e) => {
+        contactForm.addEventListener('submit', async (e) => {
             e.preventDefault();
-            const carModel = carSelect.value === 'Ander model' 
-                ? contactForm.querySelector('#customCar')?.value || 'Niet gespecificeerd'
-                : carSelect.value;
             
-            alert(`Bedankt voor je interesse! We nemen zo snel mogelijk contact met je op over je ${carModel}.`);
-            contactForm.reset();
-            const existingCustomInput = contactForm.querySelector('#customCar');
-            if (existingCustomInput) {
-                existingCustomInput.remove();
+            const submitButton = contactForm.querySelector('button[type="submit"]');
+            const originalButtonText = submitButton.textContent;
+            submitButton.disabled = true;
+            submitButton.textContent = 'Verzenden...';
+
+            // Hide previous success message if visible
+            const successMsg = document.getElementById('contactSuccess');
+            if (successMsg) successMsg.classList.add('hidden');
+
+            try {
+                const formData = new FormData(contactForm);
+                const carModel = carSelect.value === 'Ander model' 
+                    ? contactForm.querySelector('#customCar')?.value || 'Niet gespecificeerd'
+                    : carSelect.value;
+                formData.set('car', carModel);
+
+                const response = await fetch(contactForm.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+
+                if (response.ok) {
+                    // Show custom confirmation message
+                    if (successMsg) successMsg.classList.remove('hidden');
+                    contactForm.reset();
+                    const existingCustomInput = contactForm.querySelector('#customCar');
+                    if (existingCustomInput) {
+                        existingCustomInput.remove();
+                    }
+                } else {
+                    throw new Error('Er is iets misgegaan bij het verzenden van het formulier.');
+                }
+            } catch (error) {
+                alert('Er is een fout opgetreden. Probeer het later opnieuw of neem telefonisch contact op.');
+                console.error('Form submission error:', error);
+            } finally {
+                submitButton.disabled = false;
+                submitButton.textContent = originalButtonText;
             }
         });
     }

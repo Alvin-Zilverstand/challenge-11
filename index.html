@@ -170,18 +170,22 @@
             <h2 class="text-4xl font-bold text-center mb-12 hover:scale-105 transition-transform duration-300 bg-gradient-to-r from-red-500 to-orange-500 text-transparent bg-clip-text">Neem Contact Op</h2>
             <div class="row">
                 <div class="col-md-6 mx-auto">
-                    <form class="bg-gray-800 rounded-lg shadow-md p-6 transform hover:scale-105 transition-all duration-300 hover:shadow-xl border-t-4 border-red-500">
+                    <form id="contactForm" action="https://formspree.io/f/xvgrgzoo" method="POST" class="bg-gray-800 rounded-lg shadow-md p-6 transform hover:scale-105 transition-all duration-300 hover:shadow-xl border-t-4 border-red-500">
                         <div class="mb-3">
                             <label for="name" class="form-label text-gray-300">Naam</label>
-                            <input type="text" class="form-control bg-gray-700 border-gray-600 text-white focus:ring-2 focus:ring-red-500 transition-all duration-300" id="name" placeholder="Uw naam">
+                            <input type="text" class="form-control bg-gray-700 border-gray-600 text-white focus:ring-2 focus:ring-red-500 transition-all duration-300" id="name" name="name" required>
                         </div>
                         <div class="mb-3">
                             <label for="email" class="form-label text-gray-300">E-mail</label>
-                            <input type="email" class="form-control bg-gray-700 border-gray-600 text-white focus:ring-2 focus:ring-red-500 transition-all duration-300" id="email" placeholder="Uw e-mailadres">
+                            <input type="email" class="form-control bg-gray-700 border-gray-600 text-white focus:ring-2 focus:ring-red-500 transition-all duration-300" id="email" name="email" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="phone" class="form-label text-gray-300">Telefoon</label>
+                            <input type="tel" class="form-control bg-gray-700 border-gray-600 text-white focus:ring-2 focus:ring-red-500 transition-all duration-300" id="phone" name="phone" required>
                         </div>
                         <div class="mb-3">
                             <label for="car" class="form-label text-gray-300">Voertuig</label>
-                            <select class="form-control bg-gray-700 border-gray-600 text-white focus:ring-2 focus:ring-red-500 transition-all duration-300" id="car">
+                            <select class="form-control bg-gray-700 border-gray-600 text-white focus:ring-2 focus:ring-red-500 transition-all duration-300" id="car" name="car" required>
                                 <option value="" disabled selected>Selecteer uw voertuigmodel</option>
                                 <optgroup label="BMW">
                                     <option value="BMW M2">BMW M2</option>
@@ -259,6 +263,25 @@
                                     <option value="Volkswagen Polo">Volkswagen Polo</option>
                                     <option value="Volkswagen T-Roc">Volkswagen T-Roc</option>
                                     <option value="Volkswagen Tiguan">Volkswagen Tiguan</option>
+                                    <option value="Volkswagen Phaeton">Volkswagen Phaeton</option>
+                                    <option value="Volkswagen Passat">Volkswagen Passat</option>
+                                    <option value="Volkswagen Arteon">Volkswagen Arteon</option>
+                                    <option value="Volkswagen ID.3">Volkswagen ID.3</option>
+                                    <option value="Volkswagen ID.4">Volkswagen ID.4</option>
+                                    <option value="Volkswagen ID.5">Volkswagen ID.5</option>
+                                    <option value="Volkswagen ID.Buzz">Volkswagen ID.Buzz</option>
+                                    <option value="Volkswagen Touareg">Volkswagen Touareg</option>
+                                    <option value="Volkswagen Taos">Volkswagen Taos</option>
+                                    <option value="Volkswagen Atlas">Volkswagen Atlas</option>
+                                    <option value="Volkswagen Jetta">Volkswagen Jetta</option>
+                                    <option value="Volkswagen Scirocco">Volkswagen Scirocco</option>
+                                    <option value="Volkswagen Beetle">Volkswagen Beetle</option>
+                                    <option value="Volkswagen Up!">Volkswagen Up!</option>
+                                    <option value="Volkswagen Sharan">Volkswagen Sharan</option>
+                                    <option value="Volkswagen Touran">Volkswagen Touran</option>
+                                    <option value="Volkswagen Caddy">Volkswagen Caddy</option>
+                                    <option value="Volkswagen Transporter">Volkswagen Transporter</option>
+                                    <option value="Volkswagen Amarok">Volkswagen Amarok</option>
                                 </optgroup>
                                 <optgroup label="Porsche">
                                     <option value="Porsche 911">Porsche 911</option>
@@ -389,6 +412,106 @@
                                     <option value="Skoda Kodiaq">Skoda Kodiaq</option>
                                     <option value="Skoda Karoq">Skoda Karoq</option>
                                 </optgroup>
+                                <optgroup label="Mazda">
+                                    <option value="Mazda MX-5">Mazda MX-5</option>
+                                    <option value="Mazda MX-30">Mazda MX-30</option>
+                                    <option value="Mazda 3">Mazda 3</option>
+                                    <option value="Mazda 6">Mazda 6</option>
+                                    <option value="Mazda CX-3">Mazda CX-3</option>
+                                    <option value="Mazda CX-5">Mazda CX-5</option>
+                                    <option value="Mazda CX-30">Mazda CX-30</option>
+                                    <option value="Mazda CX-60">Mazda CX-60</option>
+                                </optgroup>
+                                <optgroup label="Suzuki">
+                                    <option value="Suzuki Swift Sport">Suzuki Swift Sport</option>
+                                    <option value="Suzuki Swift">Suzuki Swift</option>
+                                    <option value="Suzuki Jimny">Suzuki Jimny</option>
+                                    <option value="Suzuki Vitara">Suzuki Vitara</option>
+                                    <option value="Suzuki S-Cross">Suzuki S-Cross</option>
+                                    <option value="Suzuki Across">Suzuki Across</option>
+                                </optgroup>
+                                <optgroup label="Mitsubishi">
+                                    <option value="Mitsubishi Lancer Evolution">Mitsubishi Lancer Evolution</option>
+                                    <option value="Mitsubishi Eclipse Cross">Mitsubishi Eclipse Cross</option>
+                                    <option value="Mitsubishi ASX">Mitsubishi ASX</option>
+                                    <option value="Mitsubishi Outlander">Mitsubishi Outlander</option>
+                                    <option value="Mitsubishi Space Star">Mitsubishi Space Star</option>
+                                </optgroup>
+                                <optgroup label="Subaru">
+                                    <option value="Subaru WRX STI">Subaru WRX STI</option>
+                                    <option value="Subaru WRX">Subaru WRX</option>
+                                    <option value="Subaru BRZ">Subaru BRZ</option>
+                                    <option value="Subaru Impreza">Subaru Impreza</option>
+                                    <option value="Subaru Legacy">Subaru Legacy</option>
+                                    <option value="Subaru Outback">Subaru Outback</option>
+                                    <option value="Subaru Forester">Subaru Forester</option>
+                                    <option value="Subaru XV">Subaru XV</option>
+                                </optgroup>
+                                <optgroup label="Lexus">
+                                    <option value="Lexus LC">Lexus LC</option>
+                                    <option value="Lexus RC F">Lexus RC F</option>
+                                    <option value="Lexus IS">Lexus IS</option>
+                                    <option value="Lexus ES">Lexus ES</option>
+                                    <option value="Lexus GS">Lexus GS</option>
+                                    <option value="Lexus LS">Lexus LS</option>
+                                    <option value="Lexus NX">Lexus NX</option>
+                                    <option value="Lexus RX">Lexus RX</option>
+                                    <option value="Lexus UX">Lexus UX</option>
+                                </optgroup>
+                                <optgroup label="Infiniti">
+                                    <option value="Infiniti Q50">Infiniti Q50</option>
+                                    <option value="Infiniti Q60">Infiniti Q60</option>
+                                    <option value="Infiniti Q70">Infiniti Q70</option>
+                                    <option value="Infiniti QX50">Infiniti QX50</option>
+                                    <option value="Infiniti QX60">Infiniti QX60</option>
+                                    <option value="Infiniti QX80">Infiniti QX80</option>
+                                </optgroup>
+                                <optgroup label="Genesis">
+                                    <option value="Genesis G70">Genesis G70</option>
+                                    <option value="Genesis G80">Genesis G80</option>
+                                    <option value="Genesis G90">Genesis G90</option>
+                                    <option value="Genesis GV70">Genesis GV70</option>
+                                    <option value="Genesis GV80">Genesis GV80</option>
+                                </optgroup>
+                                <optgroup label="Kia">
+                                    <option value="Kia Stinger">Kia Stinger</option>
+                                    <option value="Kia Ceed">Kia Ceed</option>
+                                    <option value="Kia ProCeed">Kia ProCeed</option>
+                                    <option value="Kia Rio">Kia Rio</option>
+                                    <option value="Kia Picanto">Kia Picanto</option>
+                                    <option value="Kia Sportage">Kia Sportage</option>
+                                    <option value="Kia Sorento">Kia Sorento</option>
+                                    <option value="Kia EV6">Kia EV6</option>
+                                    <option value="Kia Niro">Kia Niro</option>
+                                </optgroup>
+                                <optgroup label="Hyundai">
+                                    <option value="Hyundai i20 N">Hyundai i20 N</option>
+                                    <option value="Hyundai i30 N">Hyundai i30 N</option>
+                                    <option value="Hyundai Kona N">Hyundai Kona N</option>
+                                    <option value="Hyundai i20">Hyundai i20</option>
+                                    <option value="Hyundai i30">Hyundai i30</option>
+                                    <option value="Hyundai Kona">Hyundai Kona</option>
+                                    <option value="Hyundai Tucson">Hyundai Tucson</option>
+                                    <option value="Hyundai Santa Fe">Hyundai Santa Fe</option>
+                                    <option value="Hyundai IONIQ 5">Hyundai IONIQ 5</option>
+                                    <option value="Hyundai IONIQ 6">Hyundai IONIQ 6</option>
+                                </optgroup>
+                                <optgroup label="Dacia">
+                                    <option value="Dacia Sandero">Dacia Sandero</option>
+                                    <option value="Dacia Logan">Dacia Logan</option>
+                                    <option value="Dacia Duster">Dacia Duster</option>
+                                    <option value="Dacia Spring">Dacia Spring</option>
+                                    <option value="Dacia Jogger">Dacia Jogger</option>
+                                </optgroup>
+                                <optgroup label="Lancia">
+                                    <option value="Lancia Delta HF">Lancia Delta HF</option>
+                                    <option value="Lancia Ypsilon">Lancia Ypsilon</option>
+                                </optgroup>
+                                <optgroup label="Abarth">
+                                    <option value="Abarth 595">Abarth 595</option>
+                                    <option value="Abarth 695">Abarth 695</option>
+                                    <option value="Abarth 124 Spider">Abarth 124 Spider</option>
+                                </optgroup>
                                 <optgroup label="Andere">
                                     <option value="Ander model">Ander model</option>
                                 </optgroup>
@@ -396,10 +519,13 @@
                         </div>
                         <div class="mb-3">
                             <label for="message" class="form-label text-gray-300">Bericht</label>
-                            <textarea class="form-control bg-gray-700 border-gray-600 text-white focus:ring-2 focus:ring-red-500 transition-all duration-300" id="message" rows="4" placeholder="Wat zoekt u?"></textarea>
+                            <textarea class="form-control bg-gray-700 border-gray-600 text-white focus:ring-2 focus:ring-red-500 transition-all duration-300" id="message" name="message" rows="4" required></textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary bg-gradient-to-r from-red-600 to-orange-600 hover:from-red-700 hover:to-orange-700 hover:scale-110 transition-transform duration-300 shadow-lg hover:shadow-xl">Verstuur Bericht</button>
+                        <button type="submit" class="btn btn-primary w-full bg-gradient-to-r from-red-600 to-orange-600 hover:from-red-700 hover:to-orange-700 transition-all duration-300">
+                            Verstuur Bericht
+                        </button>
                     </form>
+                    <div id="contactSuccess" class="hidden mt-4 p-4 rounded bg-green-700 text-white text-center font-semibold shadow-lg">Bedankt voor je interesse! We nemen zo snel mogelijk contact met je op.</div>
                 </div>
             </div>
         </div>
