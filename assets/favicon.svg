@@ -1,19 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
     <!-- Background Circle -->
-    <circle cx="16" cy="16" r="15" fill="url(#gradient)" stroke="url(#gradient)" stroke-width="2"/>
+    <circle cx="256" cy="256" r="240" fill="url(#gradient)" />
     
-    <!-- Abstract Shape -->
-    <path d="M16 8C11.5817 8 8 11.5817 8 16C8 20.4183 11.5817 24 16 24C20.4183 24 24 20.4183 24 16C24 11.5817 20.4183 8 16 8ZM16 22C12.6863 22 10 19.3137 10 16C10 12.6863 12.6863 10 16 10C19.3137 10 22 12.6863 22 16C22 19.3137 19.3137 22 16 22Z" fill="white"/>
+    <!-- Car Silhouette -->
+    <path d="M384 320H128C128 320 96 304 96 272C96 240 128 224 128 224H384C384 224 416 240 416 272C416 304 384 320 384 320Z" fill="white"/>
     
-    <!-- Center Dot -->
-    <circle cx="16" cy="16" r="3" fill="white"/>
+    <!-- Wheels -->
+    <circle cx="160" cy="320" r="32" fill="#1F2937"/>
+    <circle cx="352" cy="320" r="32" fill="#1F2937"/>
+    
+    <!-- Tuning Elements -->
+    <path d="M256 160L288 224H224L256 160Z" fill="white"/>
+    <circle cx="256" cy="192" r="16" fill="#EF4444"/>
     
     <!-- Gradient Definition -->
     <defs>
-        <linearGradient id="gradient" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse">
-            <stop offset="0%" stop-color="#8B5CF6"/>
-            <stop offset="100%" stop-color="#EC4899"/>
+        <linearGradient id="gradient" x1="0" y1="0" x2="512" y2="512" gradientUnits="userSpaceOnUse">
+            <stop offset="0" stop-color="#EF4444"/>
+            <stop offset="1" stop-color="#F97316"/>
         </linearGradient>
     </defs>
 </svg> 
