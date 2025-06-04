@@ -19,9 +19,9 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // Get Started button functionality
-    const getStartedBtn = document.querySelector('.btn-primary');
-    if (getStartedBtn) {
-        getStartedBtn.addEventListener('click', () => {
+    const getStartedButtons = document.querySelectorAll('.btn-primary');
+    getStartedButtons.forEach(button => {
+        button.addEventListener('click', () => {
             // Create and show modal
             const modal = document.createElement('div');
             modal.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 fade-in';
@@ -76,7 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             });
         });
-    }
+    });
 
     // Form submission handling
     const contactForm = document.querySelector('form');
