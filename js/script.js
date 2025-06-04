@@ -1,20 +1,14 @@
 // Add fade-in animation to all sections
 document.addEventListener('DOMContentLoaded', () => {
     const pageSections = document.querySelectorAll('section');
-    pageSections.forEach(section => {
-        section.classList.add('fade-in');
-    });
+    pageSections.forEach(section => section.classList.add('fade-in'));
 
     // Smooth scrolling for navigation links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
             const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                target.scrollIntoView({
-                    behavior: 'smooth'
-                });
-            }
+            if (target) target.scrollIntoView({ behavior: 'smooth' });
         });
     });
 
@@ -75,11 +69,39 @@ document.addEventListener('DOMContentLoaded', () => {
     // Form submission handling
     const contactForm = document.querySelector('form');
     if (contactForm) {
+        const carSelect = contactForm.querySelector('#car');
+        carSelect.addEventListener('change', (e) => {
+            if (e.target.value === 'Ander model') {
+                const customInput = document.createElement('input');
+                customInput.type = 'text';
+                customInput.className = 'form-control bg-gray-700 border-gray-600 text-white focus:ring-2 focus:ring-red-500 transition-all duration-300 mt-2';
+                customInput.placeholder = 'Voer uw voertuigmodel in';
+                customInput.id = 'customCar';
+                
+                const existingCustomInput = contactForm.querySelector('#customCar');
+                if (!existingCustomInput) {
+                    carSelect.parentNode.appendChild(customInput);
+                }
+            } else {
+                const existingCustomInput = contactForm.querySelector('#customCar');
+                if (existingCustomInput) {
+                    existingCustomInput.remove();
+                }
+            }
+        });
+
         contactForm.addEventListener('submit', (e) => {
             e.preventDefault();
-            // Add your form submission logic here
-            alert('Bedankt voor je interesse! We nemen zo snel mogelijk contact met je op.');
+            const carModel = carSelect.value === 'Ander model' 
+                ? contactForm.querySelector('#customCar')?.value || 'Niet gespecificeerd'
+                : carSelect.value;
+            
+            alert(`Bedankt voor je interesse! We nemen zo snel mogelijk contact met je op over je ${carModel}.`);
             contactForm.reset();
+            const existingCustomInput = contactForm.querySelector('#customCar');
+            if (existingCustomInput) {
+                existingCustomInput.remove();
+            }
         });
     }
 
