@@ -6,13 +6,18 @@ import {
   Paper,
   Card,
   CardContent,
-  CardMedia,
-  Button,
   Box,
   TextField,
   InputAdornment,
 } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
+
+// Import SVG icons
+import engineIcon from '../assets/icons/engine.svg';
+import exhaustIcon from '../assets/icons/exhaust.svg';
+import suspensionIcon from '../assets/icons/suspension.svg';
+import brakesIcon from '../assets/icons/brakes.svg';
+import wheelsIcon from '../assets/icons/wheels.svg';
 
 const CarModifications = () => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -24,7 +29,7 @@ const CarModifications = () => {
       name: 'Performance Chip',
       description: 'Increase engine power and torque with our custom ECU tuning',
       price: '€299',
-      image: 'https://via.placeholder.com/300x200?text=Performance+Chip',
+      icon: engineIcon,
       category: 'Engine',
     },
     {
@@ -32,7 +37,7 @@ const CarModifications = () => {
       name: 'Sport Exhaust System',
       description: 'High-flow exhaust system for better sound and performance',
       price: '€599',
-      image: 'https://via.placeholder.com/300x200?text=Exhaust+System',
+      icon: exhaustIcon,
       category: 'Exhaust',
     },
     {
@@ -40,7 +45,7 @@ const CarModifications = () => {
       name: 'Lowering Springs',
       description: 'Sport suspension lowering springs for improved handling',
       price: '€399',
-      image: 'https://via.placeholder.com/300x200?text=Lowering+Springs',
+      icon: suspensionIcon,
       category: 'Suspension',
     },
     {
@@ -48,7 +53,7 @@ const CarModifications = () => {
       name: 'Cold Air Intake',
       description: 'Improved air flow for better engine performance',
       price: '€199',
-      image: 'https://via.placeholder.com/300x200?text=Cold+Air+Intake',
+      icon: engineIcon,
       category: 'Engine',
     },
     {
@@ -56,7 +61,7 @@ const CarModifications = () => {
       name: 'Sport Brake Kit',
       description: 'Upgraded brake system for better stopping power',
       price: '€899',
-      image: 'https://via.placeholder.com/300x200?text=Brake+Kit',
+      icon: brakesIcon,
       category: 'Brakes',
     },
     {
@@ -64,7 +69,7 @@ const CarModifications = () => {
       name: 'Wheel Spacers',
       description: 'Improve stance and handling with wheel spacers',
       price: '€149',
-      image: 'https://via.placeholder.com/300x200?text=Wheel+Spacers',
+      icon: wheelsIcon,
       category: 'Wheels',
     },
   ];
@@ -112,12 +117,26 @@ const CarModifications = () => {
                 },
               }}
             >
-              <CardMedia
-                component="img"
-                height="200"
-                image={mod.image}
-                alt={mod.name}
-              />
+              <Box
+                sx={{
+                  p: 3,
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  backgroundColor: 'primary.main',
+                  color: 'white',
+                }}
+              >
+                <img
+                  src={mod.icon}
+                  alt={mod.name}
+                  style={{
+                    width: '64px',
+                    height: '64px',
+                    filter: 'brightness(0) invert(1)',
+                  }}
+                />
+              </Box>
               <CardContent sx={{ flexGrow: 1 }}>
                 <Typography gutterBottom variant="h5" component="h2">
                   {mod.name}
