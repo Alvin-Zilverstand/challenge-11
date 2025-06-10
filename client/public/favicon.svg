@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Car body -->
+  <path d="M6 20C6 18.8954 6.89543 18 8 18H24C25.1046 18 26 18.8954 26 20V24C26 25.1046 25.1046 26 24 26H8C6.89543 26 6 25.1046 6 24V20Z" fill="#ff3d00"/>
+  <!-- Car top -->
+  <path d="M10 14C10 12.8954 10.8954 12 12 12H20C21.1046 12 22 12.8954 22 14V18H10V14Z" fill="#ff3d00"/>
+  <!-- Wheels -->
+  <circle cx="10" cy="22" r="3" fill="#212121"/>
+  <circle cx="22" cy="22" r="3" fill="#212121"/>
+  <!-- Speed lines -->
+  <path d="M4 16L8 16" stroke="#ff3d00" stroke-width="2" stroke-linecap="round"/>
+  <path d="M4 18L8 18" stroke="#ff3d00" stroke-width="2" stroke-linecap="round"/>
+  <path d="M4 20L8 20" stroke="#ff3d00" stroke-width="2" stroke-linecap="round"/>
+</svg> 

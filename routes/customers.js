@@ -9,7 +9,7 @@ router.get('/', auth, async (req, res) => {
     const customers = await Customer.find().sort({ name: 1 });
     res.json(customers);
   } catch (err) {
-    res.status(500).json({ message: err.message });
+    res.status(500).send('Server Error');
   }
 });
 
@@ -22,24 +22,16 @@ router.get('/:id', auth, async (req, res) => {
     }
     res.json(customer);
   } catch (err) {
-    res.status(500).json({ message: err.message });
+    res.status(500).send('Server Error');
   }
 });
 
 // Create customer
 router.post('/', auth, async (req, res) => {
-  const customer = new Customer({
-    name: req.body.name,
-    email: req.body.email,
-    phone: req.body.phone,
-    address: req.body.address,
-    carModel: req.body.carModel,
-    carYear: req.body.carYear,
-  });
-
   try {
-    const newCustomer = await customer.save();
-    res.status(201).json(newCustomer);
+    const customer = new Customer(req.body);
+    await customer.save();
+    res.status(201).json(customer);
   } catch (err) {
     res.status(400).json({ message: err.message });
   }
@@ -53,9 +45,28 @@ router.put('/:id', auth, async (req, res) => {
       return res.status(404).json({ message: 'Customer not found' });
     }
 
-    Object.assign(customer, req.body);
-    const updatedCustomer = await customer.save();
-    res.json(updatedCustomer);
+    Object.keys(req.body).forEach(key => {
+      customer[key] = req.body[key];
+    });
+
+    await customer.save();
+    res.json(customer);
+  } catch (err) {
+    res.status(400).json({ message: err.message });
+  }
+});
+
+// Add modification to customer
+router.put('/:id/modifications', auth, async (req, res) => {
+  try {
+    const customer = await Customer.findById(req.params.id);
+    if (!customer) {
+      return res.status(404).json({ message: 'Customer not found' });
+    }
+
+    customer.modifications.push(req.body);
+    await customer.save();
+    res.json(customer);
   } catch (err) {
     res.status(400).json({ message: err.message });
   }
@@ -72,7 +83,7 @@ router.delete('/:id', auth, async (req, res) => {
     await customer.remove();
     res.json({ message: 'Customer deleted' });
   } catch (err) {
-    res.status(500).json({ message: err.message });
+    res.status(500).send('Server Error');
   }
 });
 

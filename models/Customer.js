@@ -20,6 +20,7 @@ const customerSchema = new mongoose.Schema({
   },
   address: {
     type: String,
+    required: true,
     trim: true
   },
   carModel: {
@@ -28,10 +29,31 @@ const customerSchema = new mongoose.Schema({
     trim: true
   },
   carYear: {
-    type: String,
-    required: true,
-    trim: true
+    type: Number,
+    required: true
   },
+  modifications: [{
+    name: {
+      type: String,
+      required: true
+    },
+    description: {
+      type: String,
+      required: true
+    },
+    price: {
+      type: Number,
+      required: true
+    },
+    category: {
+      type: String,
+      required: true
+    },
+    dateAdded: {
+      type: Date,
+      default: Date.now
+    }
+  }],
   createdAt: {
     type: Date,
     default: Date.now
@@ -48,4 +70,6 @@ customerSchema.pre('save', function(next) {
   next();
 });
 
-module.exports = mongoose.model('Customer', customerSchema); 
+const Customer = mongoose.model('Customer', customerSchema);
+
+module.exports = Customer; 
