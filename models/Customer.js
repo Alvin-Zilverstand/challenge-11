@@ -3,21 +3,34 @@ const mongoose = require('mongoose');
 const customerSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: true
+    required: true,
+    trim: true
   },
   email: {
     type: String,
     required: true,
-    unique: true
+    unique: true,
+    trim: true,
+    lowercase: true
   },
   phone: {
-    type: String
+    type: String,
+    required: true,
+    trim: true
   },
-  carDetails: {
-    make: String,
-    model: String,
-    year: Number,
-    modifications: [String]
+  address: {
+    type: String,
+    trim: true
+  },
+  carModel: {
+    type: String,
+    required: true,
+    trim: true
+  },
+  carYear: {
+    type: String,
+    required: true,
+    trim: true
   },
   createdAt: {
     type: Date,
@@ -27,6 +40,12 @@ const customerSchema = new mongoose.Schema({
     type: Date,
     default: Date.now
   }
+});
+
+// Update the updatedAt timestamp before saving
+customerSchema.pre('save', function(next) {
+  this.updatedAt = Date.now();
+  next();
 });
 
 module.exports = mongoose.model('Customer', customerSchema); 

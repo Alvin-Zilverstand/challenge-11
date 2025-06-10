@@ -1,73 +1,78 @@
 const express = require('express');
 const router = express.Router();
 const Customer = require('../models/Customer');
+const auth = require('../middleware/auth');
 
 // Get all customers
-router.get('/', async (req, res) => {
+router.get('/', auth, async (req, res) => {
   try {
     const customers = await Customer.find().sort({ name: 1 });
     res.json(customers);
-  } catch (error) {
-    console.error('Error fetching customers:', error);
-    res.status(500).json({ message: 'Server error' });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
   }
 });
 
 // Get single customer
-router.get('/:id', async (req, res) => {
+router.get('/:id', auth, async (req, res) => {
   try {
     const customer = await Customer.findById(req.params.id);
     if (!customer) {
       return res.status(404).json({ message: 'Customer not found' });
     }
     res.json(customer);
-  } catch (error) {
-    console.error('Error fetching customer:', error);
-    res.status(500).json({ message: 'Server error' });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
   }
 });
 
 // Create customer
-router.post('/', async (req, res) => {
+router.post('/', auth, async (req, res) => {
+  const customer = new Customer({
+    name: req.body.name,
+    email: req.body.email,
+    phone: req.body.phone,
+    address: req.body.address,
+    carModel: req.body.carModel,
+    carYear: req.body.carYear,
+  });
+
   try {
-    const customer = new Customer(req.body);
-    await customer.save();
-    res.status(201).json(customer);
-  } catch (error) {
-    console.error('Error creating customer:', error);
-    res.status(500).json({ message: 'Server error' });
+    const newCustomer = await customer.save();
+    res.status(201).json(newCustomer);
+  } catch (err) {
+    res.status(400).json({ message: err.message });
   }
 });
 
 // Update customer
-router.put('/:id', async (req, res) => {
+router.put('/:id', auth, async (req, res) => {
   try {
-    const customer = await Customer.findByIdAndUpdate(
-      req.params.id,
-      { ...req.body, updatedAt: Date.now() },
-      { new: true }
-    );
+    const customer = await Customer.findById(req.params.id);
     if (!customer) {
       return res.status(404).json({ message: 'Customer not found' });
     }
-    res.json(customer);
-  } catch (error) {
-    console.error('Error updating customer:', error);
-    res.status(500).json({ message: 'Server error' });
+
+    Object.assign(customer, req.body);
+    const updatedCustomer = await customer.save();
+    res.json(updatedCustomer);
+  } catch (err) {
+    res.status(400).json({ message: err.message });
   }
 });
 
 // Delete customer
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', auth, async (req, res) => {
   try {
-    const customer = await Customer.findByIdAndDelete(req.params.id);
+    const customer = await Customer.findById(req.params.id);
     if (!customer) {
       return res.status(404).json({ message: 'Customer not found' });
     }
-    res.json({ message: 'Customer deleted successfully' });
-  } catch (error) {
-    console.error('Error deleting customer:', error);
-    res.status(500).json({ message: 'Server error' });
+
+    await customer.remove();
+    res.json({ message: 'Customer deleted' });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
   }
 });
 
