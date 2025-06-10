@@ -21,6 +21,7 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/car-tunin
 
 // Routes
 app.use('/api/auth', require('./routes/auth'));
+app.use('/api/users', require('./routes/users'));
 app.use('/api/customers', require('./routes/customers'));
 app.use('/api/contacts', require('./routes/contacts'));
 
