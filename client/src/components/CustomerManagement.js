@@ -18,11 +18,56 @@ import {
   Paper,
   IconButton,
   Alert,
+  MenuItem,
+  Select,
+  FormControl,
+  InputLabel,
 } from '@mui/material';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import AddIcon from '@mui/icons-material/Add';
 import axios from 'axios';
+
+const carModels = [
+  { value: 'bmw_m3', label: 'BMW M3' },
+  { value: 'bmw_m4', label: 'BMW M4' },
+  { value: 'audi_rs3', label: 'Audi RS3' },
+  { value: 'audi_rs4', label: 'Audi RS4' },
+  { value: 'mercedes_c63', label: 'Mercedes-AMG C63' },
+  { value: 'mercedes_e63', label: 'Mercedes-AMG E63' },
+  { value: 'volkswagen_golf_r', label: 'Volkswagen Golf R' },
+  { value: 'volkswagen_arteon_r', label: 'Volkswagen Arteon R' },
+  { value: 'toyota_supra', label: 'Toyota Supra' },
+  { value: 'nissan_gtr', label: 'Nissan GT-R' },
+  { value: 'porsche_911', label: 'Porsche 911' },
+  { value: 'porsche_cayman', label: 'Porsche Cayman' },
+  { value: 'honda_civic_type_r', label: 'Honda Civic Type R' },
+  { value: 'subaru_wrx_sti', label: 'Subaru WRX STI' },
+  { value: 'mitsubishi_evo', label: 'Mitsubishi Lancer Evolution' },
+  { value: 'other', label: 'Other' },
+];
+
+// Create axios instance with default config
+const api = axios.create({
+  baseURL: 'http://localhost:5000/api',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+});
+
+// Add request interceptor to add token to all requests
+api.interceptors.request.use(
+  (config) => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
 
 const CustomerManagement = () => {
   const [customers, setCustomers] = useState([]);
@@ -45,7 +90,7 @@ const CustomerManagement = () => {
 
   const fetchCustomers = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/api/customers');
+      const response = await api.get('/customers');
       setCustomers(response.data);
     } catch (err) {
       setError('Failed to fetch customers');
@@ -87,10 +132,10 @@ const CustomerManagement = () => {
     e.preventDefault();
     try {
       if (selectedCustomer) {
-        await axios.put(`http://localhost:5000/api/customers/${selectedCustomer._id}`, formData);
+        await api.put(`/customers/${selectedCustomer._id}`, formData);
         setSuccess('Customer updated successfully');
       } else {
-        await axios.post('http://localhost:5000/api/customers', formData);
+        await api.post('/customers', formData);
         setSuccess('Customer added successfully');
       }
       fetchCustomers();
@@ -103,7 +148,7 @@ const CustomerManagement = () => {
   const handleDelete = async (id) => {
     if (window.confirm('Are you sure you want to delete this customer?')) {
       try {
-        await axios.delete(`http://localhost:5000/api/customers/${id}`);
+        await api.delete(`/customers/${id}`);
         setSuccess('Customer deleted successfully');
         fetchCustomers();
       } catch (err) {
@@ -218,15 +263,21 @@ const CustomerManagement = () => {
               multiline
               rows={2}
             />
-            <TextField
-              fullWidth
-              label="Car Model"
-              name="carModel"
-              value={formData.carModel}
-              onChange={handleChange}
-              margin="normal"
-              required
-            />
+            <FormControl fullWidth margin="normal" required>
+              <InputLabel>Car Model</InputLabel>
+              <Select
+                name="carModel"
+                value={formData.carModel}
+                onChange={handleChange}
+                label="Car Model"
+              >
+                {carModels.map((model) => (
+                  <MenuItem key={model.value} value={model.value}>
+                    {model.label}
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
             <TextField
               fullWidth
               label="Car Year"

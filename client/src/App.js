@@ -3,13 +3,16 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import Login from './components/Login';
+import Register from './components/Register';
 import Dashboard from './components/Dashboard';
 import CustomerList from './components/CustomerList';
 import CustomerDetail from './components/CustomerDetail';
 import CarModifications from './components/CarModifications';
 import ContactHistory from './components/ContactHistory';
+import CustomerManagement from './components/CustomerManagement';
 import PrivateRoute from './components/PrivateRoute';
 import UserManagement from './components/UserManagement';
+import BackToHome from './components/BackToHome';
 
 // Create a theme that matches the "stoer en snel" (tough and fast) requirement
 const theme = createTheme({
@@ -55,6 +58,7 @@ function App() {
       <Router>
         <Routes>
           <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
           <Route
             path="/"
             element={
@@ -67,7 +71,7 @@ function App() {
             path="/customers"
             element={
               <PrivateRoute>
-                <CustomerList />
+                <CustomerManagement />
               </PrivateRoute>
             }
           />
@@ -105,6 +109,7 @@ function App() {
           />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
+        <BackToHome />
       </Router>
     </ThemeProvider>
   );

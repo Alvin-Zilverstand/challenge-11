@@ -7,9 +7,9 @@ import {
   Typography,
   Box,
 } from '@mui/material';
-import DirectionsCarIcon from '@mui/icons-material/DirectionsCar';
 import PeopleIcon from '@mui/icons-material/People';
-import ChatIcon from '@mui/icons-material/Chat';
+import BuildIcon from '@mui/icons-material/Build';
+import HistoryIcon from '@mui/icons-material/History';
 import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
 import axios from 'axios';
 
@@ -20,43 +20,38 @@ const Dashboard = () => {
   useEffect(() => {
     const checkAdminStatus = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/users/me', {
-          headers: {
-            Authorization: `Bearer ${localStorage.getItem('token')}`,
-          },
-        });
+        const response = await axios.get('http://localhost:5000/api/users/me');
         setIsAdmin(response.data.role === 'admin');
-      } catch (error) {
-        console.error('Error checking admin status:', error);
+      } catch (err) {
+        console.error('Error checking admin status:', err);
       }
     };
-
     checkAdminStatus();
   }, []);
 
   const menuItems = [
     {
       title: 'Customers',
+      description: 'Manage customer information and car details',
       icon: <PeopleIcon sx={{ fontSize: 40 }} />,
-      description: 'View and manage customer information',
       path: '/customers',
     },
     {
       title: 'Car Modifications',
-      icon: <DirectionsCarIcon sx={{ fontSize: 40 }} />,
-      description: 'Browse available car modifications',
+      description: 'Browse available car modifications and upgrades',
+      icon: <BuildIcon sx={{ fontSize: 40 }} />,
       path: '/modifications',
     },
     {
       title: 'Contact History',
-      icon: <ChatIcon sx={{ fontSize: 40 }} />,
-      description: 'View customer interaction history',
+      description: 'View and manage customer interactions',
+      icon: <HistoryIcon sx={{ fontSize: 40 }} />,
       path: '/contacts',
     },
     ...(isAdmin ? [{
       title: 'User Management',
-      icon: <AdminPanelSettingsIcon sx={{ fontSize: 40 }} />,
       description: 'Manage system users and permissions',
+      icon: <AdminPanelSettingsIcon sx={{ fontSize: 40 }} />,
       path: '/users',
     }] : []),
   ];
@@ -68,7 +63,7 @@ const Dashboard = () => {
       </Typography>
       <Grid container spacing={3}>
         {menuItems.map((item) => (
-          <Grid item xs={12} md={4} key={item.title}>
+          <Grid item xs={12} sm={6} md={4} key={item.title}>
             <Paper
               sx={{
                 p: 3,
@@ -86,20 +81,20 @@ const Dashboard = () => {
               <Box
                 sx={{
                   display: 'flex',
-                  flexDirection: 'column',
-                  alignItems: 'center',
                   justifyContent: 'center',
-                  flexGrow: 1,
+                  alignItems: 'center',
+                  mb: 2,
+                  color: 'primary.main',
                 }}
               >
                 {item.icon}
-                <Typography variant="h6" component="h2" sx={{ mt: 2, fontWeight: 'bold' }}>
-                  {item.title}
-                </Typography>
-                <Typography variant="body2" color="text.secondary" sx={{ mt: 1, textAlign: 'center' }}>
-                  {item.description}
-                </Typography>
               </Box>
+              <Typography variant="h5" component="h2" gutterBottom>
+                {item.title}
+              </Typography>
+              <Typography variant="body1" color="text.secondary">
+                {item.description}
+              </Typography>
             </Paper>
           </Grid>
         ))}
