@@ -78,6 +78,7 @@ api.interceptors.request.use(
 
 const CustomerManagement = () => {
   const [customers, setCustomers] = useState([]);
+  const [modifications, setModifications] = useState([]);
   const [open, setOpen] = useState(false);
   const [openModDialog, setOpenModDialog] = useState(false);
   const [selectedCustomer, setSelectedCustomer] = useState(null);
@@ -89,7 +90,8 @@ const CustomerManagement = () => {
     phone: '',
     address: '',
     carModel: '',
-    carYear: ''
+    carYear: '',
+    modifications: []
   });
   const [modificationData, setModificationData] = useState({
     name: '',
@@ -100,6 +102,7 @@ const CustomerManagement = () => {
 
   useEffect(() => {
     fetchCustomers();
+    fetchModifications();
   }, []);
 
   const fetchCustomers = async () => {
@@ -111,9 +114,21 @@ const CustomerManagement = () => {
     }
   };
 
+  const fetchModifications = async () => {
+    try {
+      const response = await api.get('/modifications');
+      setModifications(response.data);
+    } catch (err) {
+      setError('Failed to fetch modifications');
+    }
+  };
+
   const handleOpen = (customer = null) => {
     if (customer) {
-      setFormData(customer);
+      setFormData({
+        ...customer,
+        modifications: customer.modifications || []
+      });
       setSelectedCustomer(customer);
     } else {
       setFormData({
@@ -122,7 +137,8 @@ const CustomerManagement = () => {
         phone: '',
         address: '',
         carModel: '',
-        carYear: ''
+        carYear: '',
+        modifications: []
       });
       setSelectedCustomer(null);
     }
@@ -163,6 +179,15 @@ const CustomerManagement = () => {
     setModificationData({
       ...modificationData,
       [e.target.name]: e.target.value
+    });
+  };
+
+  const handleModificationsChange = (e) => {
+    const selectedIds = e.target.value;
+    const selectedMods = modifications.filter((mod) => selectedIds.includes(mod._id));
+    setFormData({
+      ...formData,
+      modifications: selectedMods
     });
   };
 
@@ -353,6 +378,30 @@ const CustomerManagement = () => {
                   onChange={handleInputChange}
                   required
                 />
+              </Grid>
+              <Grid item xs={12}>
+                <FormControl fullWidth>
+                  <InputLabel>Car Modifications</InputLabel>
+                  <Select
+                    multiple
+                    name="modifications"
+                    value={formData.modifications.map((mod) => mod._id)}
+                    onChange={handleModificationsChange}
+                    label="Car Modifications"
+                    renderValue={(selected) =>
+                      modifications
+                        .filter((mod) => selected.includes(mod._id))
+                        .map((mod) => mod.name)
+                        .join(', ')
+                    }
+                  >
+                    {modifications.map((mod) => (
+                      <MenuItem key={mod._id} value={mod._id}>
+                        {mod.name} ({mod.category})
+                      </MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
               </Grid>
             </Grid>
           </Box>

@@ -1,13 +1,106 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #111111;
+  color: #ffffff;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Orbitron', 'Inter', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: #fff;
+  margin-top: 0;
+  margin-bottom: 18px;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+/* Global styles for consistent spacing and layout */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+/* Smooth transitions */
+* {
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #181818;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #E02D1B;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #A81F0A;
+}
+
+/* Selection color */
+::selection {
+  background: #E02D1B;
+  color: #ffffff;
+}
+
+/* Focus outline */
+:focus {
+  outline: 2px solid #E02D1B;
+  outline-offset: 2px;
+}
+
+button, .MuiButton-root {
+  border-radius: 4px !important;
+  font-family: 'Orbitron', 'Inter', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  background-color: #E02D1B;
+  color: #fff;
+  text-transform: uppercase;
+  font-size: 1.08rem;
+  padding: 14px 32px;
+  box-shadow: 0 2px 12px rgba(224,45,27,0.10);
+  margin: 8px 0;
+  transition: box-shadow 0.2s, background 0.2s;
+}
+
+button:hover, .MuiButton-root:hover {
+  background-color: #A81F0A;
+  box-shadow: 0 4px 20px rgba(224,45,27,0.18);
+}
+
+.MuiCard-root, .card {
+  border-radius: 4px;
+  background: #181818;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.35);
+  padding: 32px 28px;
+  margin: 24px 0;
+}
+
+input, .MuiInputBase-root {
+  background: #181818 !important;
+  color: #fff !important;
+  border-radius: 4px !important;
+}
+
+.MuiTableCell-root {
+  border-bottom: 1px solid #222 !important;
+  padding: 18px 12px !important;
 }

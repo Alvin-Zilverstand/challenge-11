@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Container,
   Typography,
@@ -6,10 +6,23 @@ import {
   Paper,
   Card,
   CardContent,
-  Box,
+  CardActions,
+  Button,
   TextField,
   InputAdornment,
+  Box,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+  FormControl,
+  InputLabel,
+  Select,
+  MenuItem,
+  Alert
 } from '@mui/material';
+import { Add as AddIcon } from '@mui/icons-material';
+import axios from 'axios';
 import SearchIcon from '@mui/icons-material/Search';
 
 // Import SVG icons
@@ -19,180 +32,88 @@ import suspensionIcon from '../assets/icons/suspension.svg';
 import brakesIcon from '../assets/icons/brakes.svg';
 import wheelsIcon from '../assets/icons/wheels.svg';
 
+// Create axios instance with default config
+const api = axios.create({
+  baseURL: 'http://localhost:5000/api'
+});
+
+// Add request interceptor to include token
+api.interceptors.request.use(
+  (config) => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+  },
+  (error) => {
+    return Promise.reject(error);
+  }
+);
+
 const CarModifications = () => {
+  const [modifications, setModifications] = useState([]);
+  const [customers, setCustomers] = useState([]);
+  const [selectedCustomer, setSelectedCustomer] = useState('');
+  const [selectedModification, setSelectedModification] = useState(null);
+  const [openDialog, setOpenDialog] = useState(false);
+  const [error, setError] = useState('');
+  const [success, setSuccess] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
 
-  // Sample modifications data - in a real app, this would come from an API
-  const modifications = [
-    {
-      id: 1,
-      name: 'Performance Chip',
-      description: 'Increase engine power and torque with our custom ECU tuning',
-      price: '€299',
-      icon: engineIcon,
-      category: 'Engine',
-    },
-    {
-      id: 2,
-      name: 'Sport Exhaust System',
-      description: 'High-flow exhaust system for better sound and performance',
-      price: '€599',
-      icon: exhaustIcon,
-      category: 'Exhaust',
-    },
-    {
-      id: 3,
-      name: 'Lowering Springs',
-      description: 'Sport suspension lowering springs for improved handling',
-      price: '€399',
-      icon: suspensionIcon,
-      category: 'Suspension',
-    },
-    {
-      id: 4,
-      name: 'Cold Air Intake',
-      description: 'Improved air flow for better engine performance',
-      price: '€199',
-      icon: engineIcon,
-      category: 'Engine',
-    },
-    {
-      id: 5,
-      name: 'Sport Brake Kit',
-      description: 'Upgraded brake system for better stopping power',
-      price: '€899',
-      icon: brakesIcon,
-      category: 'Brakes',
-    },
-    {
-      id: 6,
-      name: 'Wheel Spacers',
-      description: 'Improve stance and handling with wheel spacers',
-      price: '€149',
-      icon: wheelsIcon,
-      category: 'Wheels',
-    },
-    {
-      id: 7,
-      name: 'Turbocharger Kit',
-      description: 'Complete turbo upgrade kit for significant power gains',
-      price: '€2499',
-      icon: engineIcon,
-      category: 'Engine',
-    },
-    {
-      id: 8,
-      name: 'Cat-Back Exhaust',
-      description: 'Performance exhaust system with sport sound',
-      price: '€799',
-      icon: exhaustIcon,
-      category: 'Exhaust',
-    },
-    {
-      id: 9,
-      name: 'Coilover Suspension',
-      description: 'Fully adjustable suspension system for perfect handling',
-      price: '€1299',
-      icon: suspensionIcon,
-      category: 'Suspension',
-    },
-    {
-      id: 10,
-      name: 'Big Brake Kit',
-      description: '6-piston caliper upgrade with larger rotors',
-      price: '€1499',
-      icon: brakesIcon,
-      category: 'Brakes',
-    },
-    {
-      id: 11,
-      name: 'Forged Wheels',
-      description: 'Lightweight forged alloy wheels for better performance',
-      price: '€1999',
-      icon: wheelsIcon,
-      category: 'Wheels',
-    },
-    {
-      id: 12,
-      name: 'Stage 2 Tune',
-      description: 'Advanced ECU remap for maximum power gains',
-      price: '€499',
-      icon: engineIcon,
-      category: 'Engine',
-    },
-    {
-      id: 13,
-      name: 'Downpipe',
-      description: 'High-flow downpipe for improved exhaust flow',
-      price: '€349',
-      icon: exhaustIcon,
-      category: 'Exhaust',
-    },
-    {
-      id: 14,
-      name: 'Sway Bars',
-      description: 'Upgraded sway bars for reduced body roll',
-      price: '€299',
-      icon: suspensionIcon,
-      category: 'Suspension',
-    },
-    {
-      id: 15,
-      name: 'Brake Pads',
-      description: 'High-performance brake pads for better stopping',
-      price: '€199',
-      icon: brakesIcon,
-      category: 'Brakes',
-    },
-    {
-      id: 16,
-      name: 'Wheel Bearings',
-      description: 'Upgraded wheel bearings for smoother rotation',
-      price: '€249',
-      icon: wheelsIcon,
-      category: 'Wheels',
-    },
-    {
-      id: 17,
-      name: 'Intercooler Upgrade',
-      description: 'Larger intercooler for better cooling efficiency',
-      price: '€699',
-      icon: engineIcon,
-      category: 'Engine',
-    },
-    {
-      id: 18,
-      name: 'Exhaust Manifold',
-      description: 'Equal-length exhaust manifold for better flow',
-      price: '€449',
-      icon: exhaustIcon,
-      category: 'Exhaust',
-    },
-    {
-      id: 19,
-      name: 'Strut Brace',
-      description: 'Front strut brace for improved chassis rigidity',
-      price: '€199',
-      icon: suspensionIcon,
-      category: 'Suspension',
-    },
-    {
-      id: 20,
-      name: 'Brake Lines',
-      description: 'Stainless steel braided brake lines',
-      price: '€149',
-      icon: brakesIcon,
-      category: 'Brakes',
-    },
-    {
-      id: 21,
-      name: 'Wheel Locks',
-      description: 'Security wheel locks to prevent theft',
-      price: '€89',
-      icon: wheelsIcon,
-      category: 'Wheels',
+  useEffect(() => {
+    fetchModifications();
+    fetchCustomers();
+  }, []);
+
+  const fetchModifications = async () => {
+    try {
+      const response = await api.get('/modifications');
+      setModifications(response.data);
+    } catch (err) {
+      setError('Failed to fetch modifications');
     }
-  ];
+  };
+
+  const fetchCustomers = async () => {
+    try {
+      const response = await api.get('/customers');
+      setCustomers(response.data);
+    } catch (err) {
+      setError('Failed to fetch customers');
+    }
+  };
+
+  const handleAddToCustomer = (modification) => {
+    setSelectedModification(modification);
+    setOpenDialog(true);
+  };
+
+  const handleCloseDialog = () => {
+    setOpenDialog(false);
+    setSelectedCustomer('');
+    setSelectedModification(null);
+  };
+
+  const handleSubmit = async () => {
+    if (!selectedCustomer) {
+      setError('Please select a customer');
+      return;
+    }
+
+    try {
+      await api.put(`/customers/${selectedCustomer}/modifications`, {
+        name: selectedModification.name,
+        description: selectedModification.description,
+        price: selectedModification.price,
+        category: selectedModification.category
+      });
+      setSuccess('Modification added to customer successfully');
+      handleCloseDialog();
+    } catch (err) {
+      setError(err.response?.data?.message || 'Failed to add modification to customer');
+    }
+  };
 
   const filteredModifications = modifications.filter((mod) =>
     mod.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -205,6 +126,9 @@ const CarModifications = () => {
       <Typography variant="h4" component="h1" gutterBottom sx={{ fontWeight: 'bold' }}>
         Car Modifications
       </Typography>
+
+      {error && <Alert severity="error" sx={{ mb: 2 }}>{error}</Alert>}
+      {success && <Alert severity="success" sx={{ mb: 2 }}>{success}</Alert>}
 
       <Box sx={{ mb: 4 }}>
         <TextField
@@ -225,7 +149,7 @@ const CarModifications = () => {
 
       <Grid container spacing={3}>
         {filteredModifications.map((mod) => (
-          <Grid item xs={12} sm={6} md={4} key={mod.id}>
+          <Grid item xs={12} sm={6} md={4} key={mod._id}>
             <Card
               sx={{
                 height: '100%',
@@ -292,10 +216,48 @@ const CarModifications = () => {
                   </Typography>
                 </Box>
               </CardContent>
+              <CardActions>
+                <Button
+                  size="small"
+                  color="primary"
+                  startIcon={<AddIcon />}
+                  onClick={() => handleAddToCustomer(mod)}
+                >
+                  Add to Customer
+                </Button>
+              </CardActions>
             </Card>
           </Grid>
         ))}
       </Grid>
+
+      <Dialog open={openDialog} onClose={handleCloseDialog} maxWidth="sm" fullWidth>
+        <DialogTitle>Add Modification to Customer</DialogTitle>
+        <DialogContent>
+          <Box sx={{ mt: 2 }}>
+            <FormControl fullWidth>
+              <InputLabel>Select Customer</InputLabel>
+              <Select
+                value={selectedCustomer}
+                onChange={(e) => setSelectedCustomer(e.target.value)}
+                label="Select Customer"
+              >
+                {customers.map((customer) => (
+                  <MenuItem key={customer._id} value={customer._id}>
+                    {customer.name} - {customer.carModel} ({customer.carYear})
+                  </MenuItem>
+                ))}
+              </Select>
+            </FormControl>
+          </Box>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleCloseDialog}>Cancel</Button>
+          <Button onClick={handleSubmit} variant="contained" color="primary">
+            Add to Customer
+          </Button>
+        </DialogActions>
+      </Dialog>
     </Container>
   );
 };
