@@ -30,7 +30,9 @@
     "glob": "^11.0.0",
     "minimatch": "^9.0.5",
     "qs": "^6.15.0",
-    "lodash": "^4.17.21"
+    "lodash": "^4.17.21",
+    "@tootallnate/once": "^3.0.1",
+    "eslint": "^8.57.1"
   },
   "scripts": {
     "start": "react-scripts start",
