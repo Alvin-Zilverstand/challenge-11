@@ -11,8 +11,8 @@
     "create-admin": "node scripts/createAdmin.js"
   },
   "dependencies": {
-    "express": "^4.18.2",
-    "mongoose": "^7.5.0",
+    "express": "^4.22.2",
+    "mongoose": "^7.8.9",
     "bcryptjs": "^2.4.3",
     "jsonwebtoken": "^9.0.1",
     "cors": "^2.8.5",
